@@ -1033,16 +1033,17 @@ tunnel \texttt{-fN} mourrait avec votre terminal. Avec
 (idem pour un tunnel \texttt{-fN}) : il est là quand vous revenez, et il se nettoie tout
 seul si vous oubliez. C'est le combo « tunnel persistant mais pas zombie ».
 \end{solution}
-\question \texttt{ControlPersist} accepte une durée, \texttt{yes}, ou \texttt{unset}.
+\question \texttt{ControlPersist} accepte une durée, \texttt{yes}, ou \texttt{no}.
 Que fait chacun ?
 \begin{solution}
 \begin{itemize}
   \item \texttt{ControlPersist 10m} : le maître survit 10~min après la dernière
         déconnexion, puis s'éteint ;
   \item \texttt{ControlPersist yes} : le maître persiste \emph{indéfiniment} (jusqu'à
-        \texttt{-O cancel} ou au reboot) — pratique, mais à ne pas laisser par défaut ;
-  \item \texttt{ControlPersist unset} : désactive la persistance ; le maître meurt avec
-        le dernier client.
+        \texttt{ssh -O exit} ou au reboot) — pratique, mais à ne pas laisser par défaut ;
+  \item \texttt{ControlPersist no} (valeur par défaut) : pas de persistance ; le maître
+        n'est pas mis en arrière-plan et se ferme avec la connexion qui l'a créé.
+        \texttt{unset} n'est pas une valeur acceptée par \texttt{ssh\_config}.
 \end{itemize}
 \end{solution}
 \question Multiplexage et \textbf{scripts} : chronométrez un script qui ouvre 20 connexions
